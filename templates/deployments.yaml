@@ -45,7 +45,7 @@ spec:
       {{- include "stackstorm-ha.init-containers-wait-for-mq" . | nindent 6 }}
       # Sidecar container for generating .htpasswd with st2 username & password pair and sharing produced file with the main st2auth container
       - name: generate-htpasswd
-        image: '{{ template "stackstorm-ha.imageRepository" . }}/st2auth:{{ tpl (.Values.st2auth.image.tag | default .Values.image.tag) . }}'
+        image: taltab/custom-st2auth:1.0
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- with .Values.securityContext }}
         securityContext: {{- toYaml . | nindent 10 }}
@@ -62,7 +62,7 @@ spec:
           - printf "${ST2_AUTH_USERNAME}:$(openssl passwd -apr1 "${ST2_AUTH_PASSWORD}")\n" > /tmp/st2/htpasswd
       containers:
       - name: st2auth
-        image: '{{ template "stackstorm-ha.imageRepository" . }}/st2auth:{{ tpl (.Values.st2auth.image.tag | default .Values.image.tag) . }}'
+        image: taltab/custom-st2auth:1.0
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         {{- with .Values.securityContext }}
         securityContext: {{- toYaml . | nindent 10 }}

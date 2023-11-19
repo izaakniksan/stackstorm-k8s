@@ -91,6 +91,8 @@ st2:
     [database]
     # Connection and server selection timeout (in ms).
     connection_timeout = 5000
+    [auth]
+    mode=proxy
 
 
   #Override Definitions can be added here.
@@ -392,7 +394,10 @@ st2auth:
       cpu: "25m"
   annotations: {}
   # Override default image settings (for now, only tag can be overridden)
-  image: {}
+  image:
+    registry: hub.docker.com
+    repository: taltab/custom-st2auth
+    tag: "1.0"
     ## Note that Helm templating is supported in this block!
     #tag: "{{ .Values.image.tag }}"
   # Additional advanced settings to control pod/deployment placement
