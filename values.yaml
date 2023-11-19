@@ -341,7 +341,10 @@ st2web:
       memory: "100Mi"
   annotations: {}
   # Override default image settings (for now, only tag can be overridden)
-  image: {}
+  image:
+    registry: hub.docker.com
+    repository: taltab/custom-st2web
+    tag: "1.1"
     ## Note that Helm templating is supported in this block!
     #tag: "{{ .Values.image.tag }}"
   # TODO: Add Ingress setting as a way to expose service to public (#6).
