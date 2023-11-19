@@ -1,3 +1,7 @@
+@@ -130,6 +130,10 @@ server {
+     max_ranges 0;
+   }
+ 
 +  location /auth.html {
 +    root      /opt/stackstorm/static/webui/;
 +  }
@@ -5,7 +9,7 @@
    location / {
      max_ranges 0;
      root      /opt/stackstorm/static/webui/;
-@@ -137,5 +147,9 @@
+@@ -138,5 +142,9 @@ server {
      sendfile on;
      tcp_nopush on;
      tcp_nodelay on;
@@ -14,3 +18,4 @@
 +      rewrite ^(.*)$ /auth.html last;
 +    }
    }
+ }
